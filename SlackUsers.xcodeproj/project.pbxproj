@@ -15,6 +15,7 @@
 		AD4E217920300B5800420D42 /* SlackUserList.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4E217820300B5800420D42 /* SlackUserList.swift */; };
 		AD4E217F203011F500420D42 /* SlackMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4E217E203011F500420D42 /* SlackMember.swift */; };
 		AD4E21812030131200420D42 /* SlackProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4E21802030131200420D42 /* SlackProfile.swift */; };
+		ADCB69B92031471E00EB055B /* UsersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCB69B82031471E00EB055B /* UsersListViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		AD4E217820300B5800420D42 /* SlackUserList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlackUserList.swift; sourceTree = "<group>"; };
 		AD4E217E203011F500420D42 /* SlackMember.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlackMember.swift; sourceTree = "<group>"; };
 		AD4E21802030131200420D42 /* SlackProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlackProfile.swift; sourceTree = "<group>"; };
+		ADCB69B82031471E00EB055B /* UsersListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 		AD4E217620300B2B00420D42 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				ADCB69B82031471E00EB055B /* UsersListViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -190,6 +193,7 @@
 				AD4E217920300B5800420D42 /* SlackUserList.swift in Sources */,
 				AD4E217F203011F500420D42 /* SlackMember.swift in Sources */,
 				AD4E216320300B0E00420D42 /* AppDelegate.swift in Sources */,
+				ADCB69B92031471E00EB055B /* UsersListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

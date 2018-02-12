@@ -9,7 +9,7 @@
 import UIKit
 
 struct API {
-    static let authAPIToken = "xoxp-312647508816-312647508896-314151854694-b25f034fa779bbd1ba1e7972cfc8803f"
+    static let authAPIToken = "xoxp-4698769766-4698769768-266771053075-66c3498cd17d3c736b94fdd14307ef20"
     static let usersListURLString = "https://slack.com/api/users.list/"
 }
 

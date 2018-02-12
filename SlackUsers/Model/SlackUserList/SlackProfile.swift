@@ -55,6 +55,5 @@ class SlackProfile: NSObject {
 
         super.init()
     }
-    
 }
 
