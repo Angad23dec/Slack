@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SlackMember: NSObject {
+struct SlackMember {
     let memberID: String?
     let teamID: String?
     let name: String?
@@ -28,7 +28,7 @@ class SlackMember: NSObject {
     let updated: Int?
     let isAppUser: Bool?
     let has2Fa: Bool?
-    
+
     init?(json: Any?) {
         guard let jsonObject = json as? [String: Any] else {
             return nil
@@ -53,7 +53,6 @@ class SlackMember: NSObject {
         updated = jsonObject["updated"] as? Int
         isAppUser = jsonObject["is_app_user"] as? Bool
         has2Fa = jsonObject["has_2fa"] as? Bool
-        
-        super.init()
     }
 }
+

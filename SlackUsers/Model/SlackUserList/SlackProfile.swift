@@ -8,7 +8,7 @@
 
 import Foundation
 
-class SlackProfile: NSObject {
+struct SlackProfile {
     
     var title: String?
     var phone: String?
@@ -52,8 +52,6 @@ class SlackProfile: NSObject {
         image72 = jsonObject["image_72"] as? String
         image192 = jsonObject["image_192"] as? String
         image512 = jsonObject["image_512"] as? String
-
-        super.init()
     }
 }
 

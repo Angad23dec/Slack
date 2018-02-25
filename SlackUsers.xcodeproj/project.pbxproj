@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		AD0BC83F20303726007FC46D /* SlackUserListRequestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD0BC83E20303726007FC46D /* SlackUserListRequestService.swift */; };
+		AD2A86072040EA4D0072B493 /* ImageRequestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2A86062040EA4D0072B493 /* ImageRequestService.swift */; };
 		AD4E216320300B0E00420D42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4E216220300B0E00420D42 /* AppDelegate.swift */; };
 		AD4E216820300B0E00420D42 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD4E216620300B0E00420D42 /* Main.storyboard */; };
 		AD4E216A20300B0E00420D42 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD4E216920300B0E00420D42 /* Assets.xcassets */; };
@@ -16,10 +17,12 @@
 		AD4E217F203011F500420D42 /* SlackMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4E217E203011F500420D42 /* SlackMember.swift */; };
 		AD4E21812030131200420D42 /* SlackProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4E21802030131200420D42 /* SlackProfile.swift */; };
 		ADCB69B92031471E00EB055B /* UsersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCB69B82031471E00EB055B /* UsersListViewController.swift */; };
+		ADCB69BB2032E5E500EB055B /* SlackProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCB69BA2032E5E500EB055B /* SlackProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		AD0BC83E20303726007FC46D /* SlackUserListRequestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlackUserListRequestService.swift; sourceTree = "<group>"; };
+		AD2A86062040EA4D0072B493 /* ImageRequestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRequestService.swift; sourceTree = "<group>"; };
 		AD4E215F20300B0E00420D42 /* SlackUsers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SlackUsers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD4E216220300B0E00420D42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AD4E216720300B0E00420D42 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -30,6 +33,7 @@
 		AD4E217E203011F500420D42 /* SlackMember.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlackMember.swift; sourceTree = "<group>"; };
 		AD4E21802030131200420D42 /* SlackProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlackProfile.swift; sourceTree = "<group>"; };
 		ADCB69B82031471E00EB055B /* UsersListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListViewController.swift; sourceTree = "<group>"; };
+		ADCB69BA2032E5E500EB055B /* SlackProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlackProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +47,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AD2A860D204105770072B493 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		AD4B04DD203131A100242B6F /* SlackUserList */ = {
 			isa = PBXGroup;
 			children = (
@@ -58,6 +69,7 @@
 			children = (
 				AD4E216120300B0E00420D42 /* SlackUsers */,
 				AD4E216020300B0E00420D42 /* Products */,
+				AD2A860D204105770072B493 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -80,7 +92,6 @@
 				AD4E216620300B0E00420D42 /* Main.storyboard */,
 				AD4E217420300B1C00420D42 /* Model */,
 				AD4E217720300B3700420D42 /* Services */,
-				AD4E217520300B2500420D42 /* Views */,
 			);
 			path = SlackUsers;
 			sourceTree = "<group>";
@@ -93,17 +104,11 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		AD4E217520300B2500420D42 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		AD4E217620300B2B00420D42 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				ADCB69B82031471E00EB055B /* UsersListViewController.swift */,
+				ADCB69BA2032E5E500EB055B /* SlackProfileViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -112,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				AD0BC83E20303726007FC46D /* SlackUserListRequestService.swift */,
+				AD2A86062040EA4D0072B493 /* ImageRequestService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -188,6 +194,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADCB69BB2032E5E500EB055B /* SlackProfileViewController.swift in Sources */,
+				AD2A86072040EA4D0072B493 /* ImageRequestService.swift in Sources */,
 				AD0BC83F20303726007FC46D /* SlackUserListRequestService.swift in Sources */,
 				AD4E21812030131200420D42 /* SlackProfile.swift in Sources */,
 				AD4E217920300B5800420D42 /* SlackUserList.swift in Sources */,

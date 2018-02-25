@@ -13,9 +13,10 @@ struct API {
     static let usersListURLString = "https://slack.com/api/users.list/"
 }
 
-typealias UsersListCompletion = (_ members: [SlackMember]?, _ errorMessage: String?) -> Void
+typealias UsersListCompletion = (_ members: [SlackMember]?,  _ errorMessage: String?) -> Void
 
 class SlackUserListRequestService {
+    var cacheResponse :CachedURLResponse? = nil
     
     func getUsersList(completion : @escaping UsersListCompletion) {
         guard var urlComponents = URLComponents(string:API.usersListURLString) else {
@@ -23,35 +24,66 @@ class SlackUserListRequestService {
         }
         
         urlComponents.queryItems = [URLQueryItem(name: "token", value: API.authAPIToken)]
-        var urlRequest = URLRequest(url: urlComponents.url!)
+        var urlRequest = URLRequest(url: urlComponents.url!, cachePolicy: NSURLRequest.CachePolicy.returnCacheDataElseLoad, timeoutInterval: 60)
         urlRequest.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         
-        URLSession.shared.dataTask(with: urlRequest, completionHandler: { (data, response, error) in
-            if error != nil {
-                OperationQueue.main.addOperation({
-                    completion(nil, error!.localizedDescription)
-                })
-                return
-            }
+        //Get cache response using request object
+        cacheResponse = URLCache.shared.cachedResponse(for:urlRequest)
+        
+        if cacheResponse == nil {
+            let config = URLSessionConfiguration.default
+            // 500 MB - size of cache
+            config.urlCache = URLCache.shared
+            config.urlCache = URLCache(memoryCapacity: 500 * 1024 * 1024, diskCapacity: 500 * 1024 * 1024, diskPath: "urlCache")
             
-            do {
-                guard let jsonResult = try JSONSerialization.jsonObject(with: data!, options: []) as? [String: Any] else {
-                    return
-                }
-                guard let slackUserList = SlackUserList(json: jsonResult) else {
+            let session = URLSession(configuration: config)
+            let task = session.dataTask(with: urlRequest, completionHandler: { (data, response, error) in
+                if error != nil {
                     OperationQueue.main.addOperation({
                         completion(nil, error!.localizedDescription)
                     })
                     return
                 }
-                if let members = slackUserList.members {
-                    OperationQueue.main.addOperation({
-                        completion(members, nil)
-                    })
+                
+                do {
+                    guard let jsonResult = try JSONSerialization.jsonObject(with: data!, options: []) as? [String: Any] else {
+                        return
+                    }
+                    guard let slackUserList = SlackUserList(json: jsonResult) else {
+                        OperationQueue.main.addOperation({
+                            completion(nil, error!.localizedDescription)
+                        })
+                        return
+                    }
+                    if let members = slackUserList.members {
+                        OperationQueue.main.addOperation({
+                            completion(members, nil)
+                        })
+                    }
                 }
-            } catch let parseError as NSError {
-                print("JSON Error \(parseError.localizedDescription)")
+                catch let parseError as NSError {
+                    print("JSON Error \(parseError.localizedDescription)")
+                }
+                
+                let cacheResponse = CachedURLResponse(response: response!, data: data!)
+                self.cacheResponse = cacheResponse
+                URLCache.shared.storeCachedResponse(self.cacheResponse!, for: urlRequest)
+            })
+            task.resume()
+        } else {
+            do {
+                let jsonResult = try JSONSerialization.jsonObject(with: (cacheResponse?.data)!, options: []) as? [String: Any]
+                guard let slackUserList = SlackUserList(json: jsonResult) else {
+                    return
+                }
+                
+                if let members = slackUserList.members {
+                    completion(members,  nil)
+                }
             }
-        }).resume()
+            catch let parseError as NSError {
+                print("Caching Error while parsing JSON  \(parseError.localizedDescription)")
+            }
+        }
     }
 }

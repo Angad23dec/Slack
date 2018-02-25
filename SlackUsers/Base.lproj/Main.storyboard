@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="zQJ-er-HbM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="zQJ-er-HbM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -25,6 +26,9 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="a9b-bh-CmA" kind="show" identifier="ShowProfileSegue" id="V9R-NR-j6G"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -37,6 +41,47 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RHg-FB-TO3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="983" y="23"/>
+        </scene>
+        <!--Profile-->
+        <scene sceneID="Pkp-5p-J3C">
+            <objects>
+                <viewController title="Profile" id="a9b-bh-CmA" customClass="SlackProfileViewController" customModule="SlackUsers" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="wrV-tf-wFL"/>
+                        <viewControllerLayoutGuide type="bottom" id="XUb-3t-Afl"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="JnD-kL-APs">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9Hs-fY-pe3">
+                                <rect key="frame" x="41" y="64" width="293" height="283"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AMT-RK-GCW">
+                                <rect key="frame" x="187.5" y="367" width="0.0" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="AMT-RK-GCW" firstAttribute="top" secondItem="9Hs-fY-pe3" secondAttribute="bottom" constant="20" id="FBV-Ch-U19"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="9Hs-fY-pe3" secondAttribute="trailing" constant="25" id="NTH-fF-P6c"/>
+                            <constraint firstAttribute="bottom" secondItem="AMT-RK-GCW" secondAttribute="bottom" constant="300" id="Vgd-Bz-H69"/>
+                            <constraint firstItem="AMT-RK-GCW" firstAttribute="centerX" secondItem="JnD-kL-APs" secondAttribute="centerX" id="ahq-Fo-lCa"/>
+                            <constraint firstItem="9Hs-fY-pe3" firstAttribute="leading" secondItem="JnD-kL-APs" secondAttribute="leadingMargin" constant="25" id="auI-ix-KTp"/>
+                            <constraint firstItem="9Hs-fY-pe3" firstAttribute="top" secondItem="wrV-tf-wFL" secondAttribute="bottom" id="s5V-lR-mXd"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="profileImageView" destination="9Hs-fY-pe3" id="ly3-CE-TdY"/>
+                        <outlet property="profileRealName" destination="AMT-RK-GCW" id="ZRG-5c-tn9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ndd-Db-rXP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1748" y="12.143928035982009"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="7X7-tN-YL3">

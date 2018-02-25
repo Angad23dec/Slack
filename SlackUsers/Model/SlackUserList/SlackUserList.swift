@@ -8,8 +8,7 @@
 
 import UIKit
 
-class SlackUserList: NSObject  {
-    
+struct SlackUserList  {
     let responseOK : Bool
     var members : [SlackMember]?
     
@@ -23,13 +22,12 @@ class SlackUserList: NSObject  {
         if let jsonMembers = jsonObject["members"] as? [[String: Any]] {
             members = SlackUserList.getMembers(jsonMembers)
         }
-        super.init()
     }
 }
 
 //MARK: init helper methods
 private extension SlackUserList {
-    class func getMembers(_ jsonMembers: [Any]) -> [SlackMember] {
+    static func getMembers(_ jsonMembers: [Any]) -> [SlackMember] {
         var members = [SlackMember]()
         for jsonMember in jsonMembers {
             guard let member = SlackMember(json: jsonMember) else {

@@ -10,9 +10,12 @@ import UIKit
 
 class UsersListViewController : UITableViewController {
     private let slackUserListRequestService = SlackUserListRequestService()
+    private let imageRequestService = ImageRequestService()
     private var slackMembers = [SlackMember]()
-    private var slackMember : SlackMember!
+    private var slackMember : SlackMember?
+    private var slackProfileImage: UIImage?
     private var activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+    private let profileSegueIdentifier = "ShowProfileSegue"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +23,7 @@ class UsersListViewController : UITableViewController {
         title = "Slack Members"
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.backgroundColor = UIColor.lightGray
+        tableView.backgroundColor = UIColor.white
 
         setupActivityIndicatorView()
         loadSlackMembers()
@@ -55,7 +58,7 @@ private extension UsersListViewController {
     func loadSlackMembers() {
         slackUserListRequestService.getUsersList { (members, errorMessage) in
             self.activityIndicatorView.stopAnimating()
-            if members != nil || members!.count > 0 {
+            if members != nil {
                 self.slackMembers = members!
                 self.tableView.reloadData()
             }
@@ -72,14 +75,25 @@ extension UsersListViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "UserListCell", for: indexPath) as UITableViewCell
         slackMember = self.slackMembers[indexPath.row]
-        cell.textLabel?.text = slackMember.realName
+        cell.textLabel?.text = slackMember?.realName
         return cell
     }
 }
 
-//MARK:- Delegate Methods
+// MARK: - Navigation
 extension UsersListViewController {
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        cell.backgroundColor = UIColor.clear
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == profileSegueIdentifier {
+            if let indexPath = tableView.indexPathForSelectedRow {
+                if let destination = segue.destination as? SlackProfileViewController {
+                    slackMember = self.slackMembers[indexPath.row]
+                    imageRequestService.getImage(slackMember?.profile?.image192, completion: { [weak self] profileImage, errorMessage in
+                        destination.profileImageView?.image = profileImage
+                        destination.title = self?.slackMember?.profile?.realName
+                        destination.profileRealName?.text = self?.slackMember?.profile?.realName
+                    })
+                }
+            }
+        }
     }
 }
